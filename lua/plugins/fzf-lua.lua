@@ -1,8 +1,5 @@
 return {
 	"ibhagwan/fzf-lua",
-	-- optional for icon support
-	-- dependencies = { "nvim-tree/nvim-web-devicons" },
-	-- or if using mini.icons/mini.nvim
 	dependencies = { "echasnovski/mini.icons" },
 	opts = {
 		winopts = {
@@ -13,27 +10,30 @@ return {
 				search = "IncSearch",
 			},
 		},
+		files = {
+			prompt = "Files❯ ",
+			git_icons = false,
+			file_icons = true,
+			color_icons = true,
+
+			cmd = [[fd --color=never --type f --type l --exclude .git --exclude node_modules --exclude .next --exclude dist --exclude build --exclude coverage]],
+		},
+		grep = {
+			cmd = "rg --column --line-number --no-heading --color=always --smart-case --max-columns=4096 -g '!node_modules' -g '!.git' -g '!.next' -g '!dist' -g '!build' -g '!coverage' -e",
+		},
 	},
 	keys = {
 		{
 			"<leader>sf",
 			function()
-				require("fzf-lua").files({
-					actions = {
-						["default"] = require("fzf-lua").actions.file_edit,
-					},
-				})
+				require("fzf-lua").files()
 			end,
-			desc = "[S]earch [F]iles in projet directory",
+			desc = "[S]earch [F]iles in project directory",
 		},
 		{
 			"<leader>sg",
 			function()
-				require("fzf-lua").live_grep({
-					actions = {
-						["default"] = require("fzf-lua").actions.file_edit, -- open file directly
-					},
-				})
+				require("fzf-lua").live_grep()
 			end,
 			desc = "[S]earch by [G]rep",
 		},

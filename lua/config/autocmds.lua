@@ -26,3 +26,39 @@ api.nvim_create_autocmd("FileType", {
 		pcall(vim.treesitter.start)
 	end,
 })
+
+-- vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
+-- 	once = true,
+-- 	callback = function()
+-- 		local server_configs = vim.iter(vim.api.nvim_get_runtime_file("lsp/*.lua", true))
+-- 			:map(function(file)
+-- 				return vim.fn.fnamemodify(file, ":t:r")
+-- 			end)
+-- 			:totable()
+-- 		vim.lsp.enable(server_configs)
+-- 	end,
+-- })
+
+-- Auto-disable diagnostics UI in C/C++ files
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "c", "cpp" },
+	callback = function()
+		ui_enabled = false
+		vim.diagnostic.config({
+			virtual_text = false,
+			underline = false,
+			signs = false,
+		})
+	end,
+})
+
+-- Always use 4 spaces for C/C++ indentation
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "c", "cpp", "objc", "objcpp" },
+	callback = function()
+		vim.bo.tabstop = 4 -- <Tab> counts for 4 spaces
+		vim.bo.shiftwidth = 4 -- >> and autoindent = 4 spaces
+		vim.bo.softtabstop = 4 -- typing <Tab> inserts 4 spaces
+		vim.bo.expandtab = true -- convert <Tab> keypresses to spaces
+	end,
+})

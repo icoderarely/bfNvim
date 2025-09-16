@@ -17,6 +17,7 @@ return {
 				"typescript",
 				"css",
 				"json",
+				"python",
 			},
 			auto_install = true,
 			sync_install = false,

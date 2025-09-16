@@ -1,0 +1,44 @@
+{
+  "CP Template": {
+    "prefix": "cp",
+    "body": [
+      "// Problem: $(PROBLEM)",
+      "// Author: akanavz",
+      "// URL: $(URL)",
+      "// Memory Limit: $(MEMLIM)",
+      "// Time Limit: $(TIMELIM)",
+      "",
+      "#include \"bits/stdc++.h\"",
+      "using namespace std;",
+      "",
+      "#define fast_io ios::sync_with_stdio(false); cin.tie(nullptr);",
+      "#define endl '\\n'",
+      "using ll = long long;",
+      "",
+      "void solve() {",
+      "    $0",
+      "}",
+      "",
+      "int main() {",
+      "    fast_io;",
+      "    int t = 1;",
+      "    cin >> t;",
+      "    while (t--) solve();",
+      "    return 0;",
+      "}"
+    ],
+    "description": "Competitive programming template"
+  },
+
+  "For loop (i)": {
+    "prefix": "fori",
+    "body": ["for (int ${1:i} = 0; ${1} < ${2:n}; ++${1}) {", "    $0", "}"],
+    "description": "For loop"
+  },
+
+  "Debug print": {
+    "prefix": "dbg",
+    "body": ["cerr << \"${1:var} = \" << (${1}) << endl;"],
+    "description": "Debug print"
+  }
+}
